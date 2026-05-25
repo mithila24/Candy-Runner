@@ -20,22 +20,22 @@ namespace Project.Scripts.UI
 
         private void Awake()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = this;
             }
 
             folderPath = Path.Combine(Application.persistentDataPath, "Profiles");
-Debug.Log("Path "+ folderPath);
+            Debug.Log("Path " + folderPath);
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
-            
+
             LoadSavedProfile();
         }
 
- 
+
         public void SubmitProfile()
         {
             string playerName = nameInput.text.Trim();
@@ -45,20 +45,21 @@ Debug.Log("Path "+ folderPath);
                 messageText.text = "Name or Password cannot be Empty";
                 return;
             }
+
             string filePath = Path.Combine(folderPath, playerName + ".json");
             if (File.Exists(filePath))
             {
                 messageText.text = "Username already exists!";
                 return;
             }
-            
+
             PlayerData data = new PlayerData
             {
                 playerName = playerName,
                 password = password,
                 highScore = 0
             };
-            
+
             string json = JsonUtility.ToJson(data, true);
             File.WriteAllText(filePath, json);
             messageText.text = "Profile Created Successfully!!";
@@ -68,7 +69,7 @@ Debug.Log("Path "+ folderPath);
             HomeScreenPlayButton.instance.LoadGameScene();
         }
 
-       
+
         public void LoadProfiles()
         {
             string[] files = Directory.GetFiles(folderPath, "*.json");
@@ -78,13 +79,13 @@ Debug.Log("Path "+ folderPath);
                 PlayerData data = JsonUtility.FromJson<PlayerData>(json);
 
                 GameObject item = Instantiate(profileItemPrefab, contentParent);
-
+                Debug.Log("Loaded data is " + data.playerName);
                 ProfileUICard itemUI = item.GetComponent<ProfileUICard>();
                 itemUI.Setup(data);
             }
         }
 
-      
+
         public void ShowProfiles()
         {
             profilesScrollView.SetActive(true);
@@ -92,41 +93,41 @@ Debug.Log("Path "+ folderPath);
             {
                 Destroy(child.gameObject);
             }
+
             LoadProfiles();
         }
-        
+
         public void SelectProfile(PlayerData profile)
         {
-            
             currentProfile = profile;
             PlayerPrefs.SetString("SelectedProfile", profile.playerName);
             PlayerPrefs.Save();
-            
         }
 
-  
+
         public void SaveCurrentProfile()
         {
-            if(currentProfile == null)
+            if (currentProfile == null)
                 return;
 
             string filePath = Path.Combine(folderPath, currentProfile.playerName + ".json");
-            string json = JsonUtility.ToJson(currentProfile, true );
+            string json = JsonUtility.ToJson(currentProfile, true);
             File.WriteAllText(filePath, json);
-         
         }
-        
-        void LoadSavedProfile()
+
+        public void LoadSavedProfile()
         {
             if (!PlayerPrefs.HasKey("SelectedProfile")) return;
             string savedProfile = PlayerPrefs.GetString("SelectedProfile");
             string filePath = Path.Combine(folderPath, savedProfile + ".json");
             if (!File.Exists(filePath)) return;
             string json = File.ReadAllText(filePath);
-            PlayerData data = JsonUtility.FromJson<PlayerData>(json );
+            PlayerData data = JsonUtility.FromJson<PlayerData>(json);
             currentProfile = data;
-            
-            
         }
+        
+      
+
+      
     }
 }

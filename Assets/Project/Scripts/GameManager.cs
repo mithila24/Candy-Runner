@@ -126,9 +126,12 @@ namespace Project.Scripts
 
             gameover = true;
             gameOverScreen.SetActive(true);
-        
         }
 
+        public void LeaderBtnClick()
+        {
+            ProfileManager.instance.LoadProfiles();
+        }
         public void ResetGame()
         {
             score = 0;
