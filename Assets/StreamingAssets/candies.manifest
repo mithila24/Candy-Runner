@@ -1,0 +1,40 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.11f1
+CRC: 2259590772
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d2cf5509876a23ae9816b5deb5d1f3c8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0508d03caabc181d062a6c0a9090b18f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: e27b479e95228ee06a87931e467f7966
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 60
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 55d8b3590ea16724e9cdd4decb4f8c0d, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Project/Prefab/Candy_01.prefab
+- Assets/Project/Prefab/Candy_02.prefab
+Dependencies: []
