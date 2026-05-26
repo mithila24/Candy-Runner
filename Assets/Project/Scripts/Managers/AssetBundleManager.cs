@@ -13,9 +13,9 @@ namespace Project.Scripts
         private Dictionary<string, GameObject[]> loadedAssets = new Dictionary<string, GameObject[]>();
 
         public bool IsLoadingComplete { get; private set; }
+
         private async void Awake()
         {
-    
             if (Instance == null)
             {
                 Instance = this;
@@ -36,44 +36,48 @@ namespace Project.Scripts
             await LoadBundle("obstaclesbundle");
             await LoadBundle("powerupbundle");
             IsLoadingComplete = true;
-            
         }
 
         private async Task LoadBundle(string bundleName)
         {
             if (loadedBundles.ContainsKey(bundleName))
             {
+                Debug.Log(bundleName + " Already Loaded");
                 return;
             }
+
             string path = Path.Combine(Application.streamingAssetsPath, bundleName);
-            
+
             if (!File.Exists(path))
             {
                 Debug.LogError(bundleName + " NOT FOUND at path:\n" + path);
                 return;
             }
 
-           
+
             AssetBundleCreateRequest request = AssetBundle.LoadFromFileAsync(path);
             while (!request.isDone)
             {
                 await Task.Yield();
             }
+
             AssetBundle bundle = request.assetBundle;
 
             if (bundle == null)
             {
+                Debug.LogError("Failed To Load Bundle : " + bundleName);
+
                 return;
             }
 
             loadedBundles.Add(bundleName, bundle);
-            
+
             GameObject[] prefabs = bundle.LoadAllAssets<GameObject>();
             loadedAssets.Add(bundleName, prefabs);
             Debug.Log(bundleName + " Loaded Successfully!");
         }
 
-      
+
         public GameObject[] LoadAllPrefabs(string bundleName)
         {
             if (!loadedAssets.ContainsKey(bundleName))
@@ -84,16 +88,20 @@ namespace Project.Scripts
             return loadedAssets[bundleName];
         }
 
-      
+
         public GameObject GetRandomPrefab(string bundleName)
         {
             GameObject[] prefabs = LoadAllPrefabs(bundleName);
-            if (prefabs == null) { return null; }
+            if (prefabs == null || prefabs.Length == 0)
+            {
+                Debug.LogWarning("No Prefabs Found In Bundle : " + bundleName);
+            }
+
             int randomIndex = Random.Range(0, prefabs.Length);
             return prefabs[randomIndex];
         }
 
-      
+
         public GameObject GetPrefabByTag(string bundleName, string tagName)
         {
             if (!loadedAssets.ContainsKey(bundleName))
@@ -102,8 +110,7 @@ namespace Project.Scripts
                 return null;
             }
 
-            GameObject[] prefabs =
-                loadedAssets[bundleName];
+            GameObject[] prefabs = loadedAssets[bundleName];
 
             foreach (GameObject prefab in prefabs)
             {
@@ -112,9 +119,8 @@ namespace Project.Scripts
                     return prefab;
                 }
             }
+
             return null;
         }
-
-       
     }
 }

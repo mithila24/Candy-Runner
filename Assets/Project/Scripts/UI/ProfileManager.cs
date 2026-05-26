@@ -20,9 +20,14 @@ namespace Project.Scripts.UI
 
         private void Awake()
         {
-            if (instance == null)
+            if(instance == null)
             {
                 instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+                return;
             }
 
             folderPath = Path.Combine(Application.persistentDataPath, "Profiles");
