@@ -34,11 +34,16 @@ Current architecture already supported assignment requirements.
 
 ## Before / After Notes
 
-### Before
-- Restart did not clear all gameplay states
-- Startup could produce null reference errors
 
-### After
-- Restart fully resets runtime systems
-- Added defensive checks and validation during startup
-- Improved powerup lifecycle reliability
+## Before
+- Scripts were stored in a single folder with limited organization.
+- Startup flow could produce null reference issues if references were missing.
+- Restart flow did not fully reset runtime gameplay state.
+- Runtime validation and defensive checks were minimal.
+
+## After
+- Scripts were reorganized into Managers, Gameplay, Spawners, UI, and Data folders.
+- Added defensive null validation and startup safety checks.
+- Restart flow now properly resets gameplay systems and UI state.
+- Powerup activation and expiration behavior were verified and improved.
+- Added runtime robustness improvements and safer coroutine handling.
