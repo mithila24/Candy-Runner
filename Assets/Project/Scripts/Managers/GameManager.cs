@@ -19,7 +19,7 @@ namespace Project.Scripts
         public GameObject[] hearts;
         public int score = 0;
         public int lives = 3;
-        public GameObject gameOverScreen;
+        public GameOverScreen gameOverScreen;
         public AudioSource audioSource;
         public AudioClip noSound;
         public AudioClip UISound;
@@ -44,7 +44,7 @@ namespace Project.Scripts
         {
             UpdateScore();
             UpdateLivesUI();
-            gameOverScreen.SetActive(false);
+            gameOverScreen.gameObject.SetActive(false);
             LoadingPanel.SetActive(false);
         }
 
@@ -122,10 +122,12 @@ namespace Project.Scripts
             {
                 profile.highScore = score;
                 ProfileManager.instance.SaveCurrentProfile();
+               
             }
 
             gameover = true;
-            gameOverScreen.SetActive(true);
+            gameOverScreen.SetupCurrentPlayerUI();
+            gameOverScreen.gameObject.SetActive(true);
         }
 
         public void LeaderBtnClick()

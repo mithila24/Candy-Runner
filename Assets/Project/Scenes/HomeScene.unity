@@ -4708,10 +4708,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 587976861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -565.89, y: -386.77}
-  m_SizeDelta: {x: 212.2195, y: 266.9771}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 481, y: 100}
+  m_SizeDelta: {x: 210, y: 262}
   m_Pivot: {x: 0.5, y: 0.35852268}
 --- !u!114 &1117230629
 MonoBehaviour:
@@ -5496,7 +5496,7 @@ MonoBehaviour:
   - {fileID: 114221328}
   score: 0
   lives: 3
-  gameOverScreen: {fileID: 1185550887}
+  gameOverScreen: {fileID: 1185550889}
   audioSource: {fileID: 695414982}
   noSound: {fileID: 8300000, guid: 46de46ab70b9aa3498b657eea5053ebd, type: 3}
   UISound: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
@@ -6261,7 +6261,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3

@@ -50,7 +50,7 @@ namespace Project.Scripts
                 return;
             }
 
-            SetupCurrentPlayerUI();
+           
 
             // PANEL SETUP
             if(finalPanel != null)
@@ -78,7 +78,7 @@ namespace Project.Scripts
         }
 
         // CURRENT PLAYER UI
-        private void SetupCurrentPlayerUI()
+        public void SetupCurrentPlayerUI()
         {
             // PROFILE EXISTS
             if (ProfileManager.currentProfile != null)
